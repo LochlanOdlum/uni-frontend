@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { CssBaseline, Container } from '@mui/material';
+import { Stack } from '@mui/material';
 
-function App() {
-  const [count, setCount] = useState(0)
+import Navbar from './components/NavBar';
+import HomePage from './pages/HomePage';
+import LocationPage from './pages/LocationPage';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import CreateOrEditHomeOrLocation, { HomeOrLocation, CreateOrEdit } from './pages/CreateOrEditHomeOrLocation';
+import UserManagement from './pages/userManagement';
+// import { fetchHomes } from './redux/slices/homesSlice';
+// import { fetchLocations } from './redux/slices/locationsSlice';
+
+const App: React.FC = () => {
+  // const dispatch = useDispatch();
+
+  // Fetch homes and locations when the app loads
+  // useEffect(() => {
+  //   dispatch(fetchHomes());
+  //   dispatch(fetchLocations());
+  // }, [dispatch]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Router>
+      <CssBaseline />
+      <Stack spacing={4} alignItems={"center"}>
+        <Navbar />
+        <Container maxWidth="lg">
+          <Routes>
+            <Route path="/" element={<HomePage/>} />
+            <Route path="/signup" element={<SignUp/>}/>
+            <Route path="/signin" element={<SignIn/>}/>
+            <Route path="/location/create" element={<CreateOrEditHomeOrLocation createOrEdit={CreateOrEdit.Create} homeOrLocation={HomeOrLocation.Location}/>} />
+            <Route path="/location/edit/:id" element={<CreateOrEditHomeOrLocation createOrEdit={CreateOrEdit.Edit} homeOrLocation={HomeOrLocation.Location}/>} />
+            <Route path="/location/:locationId" element={<LocationPage />} />
+            <Route path="/home/create" element={<CreateOrEditHomeOrLocation createOrEdit={CreateOrEdit.Create} homeOrLocation={HomeOrLocation.Home}/>} />
+            <Route path="/home/edit/:id" element={<CreateOrEditHomeOrLocation createOrEdit={CreateOrEdit.Edit} homeOrLocation={HomeOrLocation.Home}/>} />
+            <Route path="/users" element={<UserManagement/>} />
+          </Routes>
+        </Container>
+      </Stack>
+    </Router>
+  );
+};
 
-export default App
+export default App;
