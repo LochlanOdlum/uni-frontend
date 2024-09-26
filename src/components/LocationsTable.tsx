@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useGetLocationsQuery, useGetDistancesQuery } from '../redux/services/api';
-import { Table, TableBody, TableCell, TableHead, TableRow, TableContainer, Paper, Grid2 as Grid, Button} from '@mui/material';
+import { Table, TableBody, TableCell, TableHead, TableRow, TableContainer, Paper, Grid2 as Grid } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { Link, useNavigate } from 'react-router-dom';
@@ -15,7 +15,6 @@ const LocationsTable = () => {
     data: locations, 
     error: locationsError, 
     isLoading: locationsIsLoading, 
-    isFetching: locationsIsFetching 
   } = useGetLocationsQuery(
     { skip: 0, limit: 100 },
     {
@@ -28,7 +27,6 @@ const LocationsTable = () => {
     data: distances, 
     error: distancesError, 
     isLoading: distancesIsLoading, 
-    isFetching: distancesIsFetching 
   } = useGetDistancesQuery(
     selectedHomeId ?? 0, // Use 0 or a default value if selectedHomeId is null
     {

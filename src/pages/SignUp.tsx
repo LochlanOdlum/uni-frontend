@@ -7,12 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import { AppDispatch } from '../redux/store';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  // Add other fields if necessary
-}
+// interface User {
+//   id: string;
+//   name: string;
+//   email: string;
+//   // Add other fields if necessary
+// }
 
 interface SignUpFormData {
   name: string;

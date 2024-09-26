@@ -1,6 +1,6 @@
 import { AppBar, Toolbar, Box, Button, Grid2 as Grid } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AppDispatch, RootState } from '../redux/store';
 import { logout } from '../redux/slices/authSlice';
 import AdminButton from './AdminButton';

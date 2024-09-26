@@ -1,4 +1,4 @@
-import { Stack, Typography } from '@mui/material';
+import { Stack } from '@mui/material';
 import { RootState } from '../redux/store';
 import { useSelector } from 'react-redux';
 import { useMemo } from 'react';
@@ -12,19 +12,14 @@ import { DEFAULT_LATITUDE, DEFAULT_LONGITUDE } from '../constants';
 const HomePage = () => {
   const selectedHomeId = useSelector((state: RootState) => state.home.selectedHomeId);
 
-  const { data: homes, error, isLoading, isFetching } = useGetHomesQuery(
+  const { data: homes } = useGetHomesQuery(
     { skip: 0, limit: 100 }, 
     {
       refetchOnMountOrArgChange: true,
     }
   );
 
-  const { 
-    data: locations, 
-    error: locationsError, 
-    isLoading: locationsIsLoading, 
-    isFetching: locationsIsFetching 
-  } = useGetLocationsQuery(
+  const { data: locations } = useGetLocationsQuery(
     { skip: 0, limit: 100 },
     {
       refetchOnMountOrArgChange: true,

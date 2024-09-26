@@ -1,7 +1,7 @@
 // src/redux/services/api.ts
 
 import { BaseQueryFn, FetchArgs, FetchBaseQueryError, createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { paths, operations, components } from '../../types/api';
+import { components } from '../../types/api';
 import type { RootState } from '../store';
 import { logout } from '../slices/authSlice';
 
