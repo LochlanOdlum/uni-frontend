@@ -6,6 +6,7 @@
   ],
   "compilerOptions": {
     "noEmitOnError": false,
-    "suppressImplicitAnyIndexErrors": true
+    "noUnusedLocals": false, // Suppresses errors for unused locals like 'result' and 'error'
+    "noUnusedParameters": false, // Suppresses errors for unused parameters
   }
 }
