@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Box, Typography, Button, Grid2 as Grid, CircularProgress } from '@mui/material';
+import { TextField, Box, Button, Grid2 as Grid, CircularProgress } from '@mui/material';
 
 import { components } from '../types/api';
 import MapComponent from './MapComponent';
@@ -14,12 +14,12 @@ export interface AddressFormProps {
 }
 
 // Suported countries
-const countries = [
-  { code: 'GB', label: 'United Kingdom' },
-  // { code: 'US', label: 'United States' },
-  // { code: 'CA', label: 'Canada' },
-  // Add more countries here
-];
+// const countries = [
+//   { code: 'GB', label: 'United Kingdom' },
+//   // { code: 'US', label: 'United States' },
+//   // { code: 'CA', label: 'Canada' },
+//   // Add more countries here
+// ];
 
 const AddressForm = ({ address, setAddress }: AddressFormProps) => {
   const [

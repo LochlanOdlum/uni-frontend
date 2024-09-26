@@ -1,5 +1,5 @@
-import React, { useState, useEffect, MouseEventHandler } from 'react';
-import { FormControl, InputLabel, Select, MenuItem, CircularProgress, FormHelperText, Grid2 as Grid, Button } from '@mui/material';
+import React, { useEffect } from 'react';
+import { FormControl, InputLabel, Select, MenuItem, CircularProgress, FormHelperText, Grid2 as Grid } from '@mui/material';
 import { useDeleteHomeMutation, useGetHomesQuery } from '../redux/services/api';
 import { components } from '../types/api';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,7 +9,6 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import { Link } from 'react-router-dom';
 import AuthButton from './AuthButton';
 import AdminButton from './AdminButton';
-import { skipToken } from '@reduxjs/toolkit/query';
 
 // Define the type for HomeRead for clarity
 type HomeRead = components['schemas']['HomeRead'];

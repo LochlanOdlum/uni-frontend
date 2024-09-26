@@ -1,8 +1,6 @@
-import { Card, CardContent, Typography, Button, Grid2 as Grid } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useGetLocationsQuery, useGetLocationByIdQuery, useDeleteLocationMutation } from '../redux/services/api';
-import { components } from '../types/api';
+import { Card, CardContent, Typography, Grid2 as Grid } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
+import { useGetLocationByIdQuery, useDeleteLocationMutation } from '../redux/services/api';
 import MapComponent from './MapComponent';
 import AuthButton from './AuthButton';
 import AdminButton from './AdminButton';
