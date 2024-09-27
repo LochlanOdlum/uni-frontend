@@ -6,6 +6,7 @@ import { TextField, Button, Container, Typography, Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { AppDispatch } from '../redux/store';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { useSnackbar } from 'notistack';
 
 // interface User {
 //   id: string;
@@ -21,6 +22,8 @@ interface SignUpFormData {
 }
 
 const SignUp: React.FC = () => {
+  const { enqueueSnackbar } = useSnackbar();
+
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const [signup, { isLoading, error }] = useSignupMutation();
@@ -42,8 +45,10 @@ const SignUp: React.FC = () => {
     try {
       const userData = await signup({ name, email, password }).unwrap();
       dispatch(setCredentials({ user: userData }));
+      enqueueSnackbar('Activity was successful!', { variant: 'success' });
       navigate('/signin'); 
     } catch (err) {
+      enqueueSnackbar('An error occurred. Please try again.', { variant: 'error' });
       console.error('Failed to sign up:', err);
     }
   };

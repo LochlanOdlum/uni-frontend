@@ -28,11 +28,13 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { components } from '../types/api';
 import ConfirmableDelete from '../components/ConfirmableDelete';
+import { useSnackbar } from 'notistack';
 
 type User = components['schemas']['UserRead'];
 type UserUpdate = components['schemas']['UserUpdate'];
 
 const UserManagement: React.FC = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const { data: users, error, isLoading } = useGetUsersQuery();
   const [updateUser] = useUpdateUsersMutation();
   const [deleteUser] = useDeleteUserMutation();
@@ -69,8 +71,9 @@ const UserManagement: React.FC = () => {
     if (window.confirm('Are you sure you want to delete this user?')) {
       try {
         await deleteUser(userId);
+        enqueueSnackbar('Activity was successful!', { variant: 'success' });
       } catch (err) {
-        console.error(err);
+        enqueueSnackbar('An error occurred. Please try again.', { variant: 'error' });
         alert('Failed to delete user');
       }
     }
@@ -88,9 +91,10 @@ const UserManagement: React.FC = () => {
       role: newRole,
     };
     try {
+      enqueueSnackbar('Activity was successful!', { variant: 'success' });
       await updateUser({ user_id: user.id, data: updatedUser });
     } catch (err) {
-      console.error(err);
+      enqueueSnackbar('An error occurred. Please try again.', { variant: 'error' });
       alert('Failed to update user role');
     }
   };
@@ -103,10 +107,11 @@ const UserManagement: React.FC = () => {
         role,
       };
       try {
+        enqueueSnackbar('Activity was successful!', { variant: 'success' });
         await updateUser({ user_id: selectedUser.id, data: updatedUser });
         setOpenEditDialog(false);
       } catch (err) {
-        console.error(err);
+        enqueueSnackbar('An error occurred. Please try again.', { variant: 'error' });
         alert('Failed to update user');
       }
     }
