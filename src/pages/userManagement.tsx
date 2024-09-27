@@ -27,6 +27,7 @@ import {
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { components } from '../types/api';
+import ConfirmableDelete from '../components/ConfirmableDelete';
 
 type User = components['schemas']['UserRead'];
 type UserUpdate = components['schemas']['UserUpdate'];
@@ -141,12 +142,13 @@ const UserManagement: React.FC = () => {
                   >
                     <EditIcon />
                   </IconButton>
-                  <IconButton
-                    onClick={() => handleDeleteUser(user.id, user.role)}
-                    disabled={user.role === 'root'}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
+                  <ConfirmableDelete disabled={user.role === 'root'} handleDelete={() => handleDeleteUser(user.id, user.role)}>
+                    <IconButton
+                      disabled={user.role === 'root'}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </ConfirmableDelete>
                   {user.role !== 'root' && (
                     <Button
                       onClick={() => handlePromoteDemote(user)}
@@ -186,11 +188,10 @@ const UserManagement: React.FC = () => {
             <Select
               labelId="role-label"
               value={role}
-              onChange={(e) => setRole(e.target.value as 'user' | 'admin' | 'root')}
+              onChange={(e) => setRole(e.target.value as 'user' | 'admin')}
             >
               <MenuItem value="user">User</MenuItem>
               <MenuItem value="admin">Admin</MenuItem>
-              <MenuItem value="root">Root</MenuItem>
             </Select>
           </FormControl>
         </DialogContent>

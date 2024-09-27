@@ -9,6 +9,7 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import { Link } from 'react-router-dom';
 import AuthButton from './AuthButton';
 import AdminButton from './AdminButton';
+import ConfirmableDelete from './ConfirmableDelete';
 
 // Define the type for HomeRead for clarity
 type HomeRead = components['schemas']['HomeRead'];
@@ -41,9 +42,11 @@ const HomeSelect: React.FC = () => {
   return (
     <>
       <Grid container sx={{justifyContent: "flex-end", columnGap: "0.7rem"}}>
-        <AdminButton onClick={() => selectedHomeId && deleteHome(selectedHomeId)}>
-          Delete Selected Home
-        </AdminButton>
+        <ConfirmableDelete handleDelete={() => selectedHomeId && deleteHome(selectedHomeId)}>
+          <AdminButton>
+            Delete Selected Home
+          </AdminButton>
+        </ConfirmableDelete>
       <AuthButton disabled={false} variant="contained" color="primary" component="div">
           <Link to={`/home/edit/${selectedHomeId}`} style={{textDecoration: "inherit", color: "inherit", font: "inherit", cursor: "inherit"}}> 
             Update Selected Home

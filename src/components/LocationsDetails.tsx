@@ -4,6 +4,7 @@ import { useGetLocationByIdQuery, useDeleteLocationMutation } from '../redux/ser
 import MapComponent from './MapComponent';
 import AuthButton from './AuthButton';
 import AdminButton from './AdminButton';
+import ConfirmableDelete from './ConfirmableDelete';
 
 export interface LocationDetailsProps {
   locationId: number
@@ -37,6 +38,14 @@ const LocationDetails = ({ locationId }: LocationDetailsProps) => {
   
   if (!location || errorText) {
     return <Typography variant="h5">Error loading {errorText}</Typography>;
+  }
+
+  const handleLocationDelete = async () => {
+    if (!locationId) {
+      return;
+    }
+    await deleteLocation(locationId);
+    navigate("/");
   }
 
   return (
@@ -81,7 +90,9 @@ const LocationDetails = ({ locationId }: LocationDetailsProps) => {
             </CardContent>
           </Card>
           <Grid container sx={{justifyContent: "flex-end", columnGap: "0.7rem", width: "100%", height: "100%"}} alignSelf={"flex-end"}>
-          <AdminButton onClick={() => locationId && deleteLocation(locationId) && navigate("/")}>Delete Location</AdminButton>
+          <ConfirmableDelete handleDelete={handleLocationDelete}>
+            <AdminButton>Delete Location</AdminButton> 
+          </ConfirmableDelete>
             <AuthButton disabled={false} variant="contained" sx={{backgroundColor: "rgb(205, 133, 49)"}} component="div">
               <Link to={`/location/edit/${locationId}`} style={{textDecoration: "inherit", color: "white", font: "inherit", cursor: "inherit"}}> 
                 Edit Location

@@ -13,7 +13,7 @@ const baseQuery: BaseQueryFn<
   // Initialize fetchBaseQuery with your settings
   const rawBaseQuery = fetchBaseQuery({
     // baseUrl: 'http://localhost:8000',
-    baseUrl: 'http://35.178.201.94:80/',
+    baseUrl: 'https://lochlano-location-1143655053.eu-west-2.elb.amazonaws.com/',
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       if (token) {
