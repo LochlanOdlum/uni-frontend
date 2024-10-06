@@ -13,7 +13,7 @@ const baseQuery: BaseQueryFn<
   // Initialize fetchBaseQuery with your settings
   const rawBaseQuery = fetchBaseQuery({
     // baseUrl: 'http://localhost:8000',
-    baseUrl: 'http://location-locator-backend.lochlan.cc/',
+    baseUrl: 'https://location-locator-backend.lochlan.cc/',
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       if (token) {
